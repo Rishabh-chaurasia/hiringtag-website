@@ -9,7 +9,7 @@ export function Hero({ onPartner }) {
       <div className="container hero-grid">
         <div className="hero-copy">
           <motion.span className="eyebrow" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
-            <i className="eyebrow-line" />Recruitment &amp; Talent Consulting
+            <i className="eyebrow-line" />Recruitment and Talent Consultant
           </motion.span>
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55, delay: 0.05 }}>
             Elevating<br /><span className="hero-accent">Recruitment</span><br />Excellence

@@ -63,6 +63,19 @@ export function HiringTagAssistant() {
 
   const onFormSubmit = (e) => {
     e.preventDefault();
+    const data = new FormData(e.target);
+    const lines = [
+      `Name: ${data.get('name') || ''}`,
+      `Business email: ${data.get('email') || ''}`,
+      `Company: ${data.get('company') || ''}`,
+      `Phone: ${data.get('phone') || ''}`,
+      '',
+      'Message:',
+      data.get('message') || '',
+    ];
+    const subject = encodeURIComponent('New Enquiry — Hiring Tag Assistant');
+    const body = encodeURIComponent(lines.join('\n'));
+    window.location.href = `mailto:${siteData.company.email}?subject=${subject}&body=${body}`;
     setMessages((m) => [...m, { from: 'user', text: 'Enquiry sent' }]);
     setMessages((m) => [...m, { from: 'bot', text: "Thank you! Your details have been captured and our team will reach out shortly." }]);
     setShowForm(false);
@@ -128,11 +141,11 @@ export function HiringTagAssistant() {
 
                 {showForm && (
                   <form className="assistant-form" onSubmit={onFormSubmit}>
-                    <input required placeholder="Your name" />
-                    <input required type="email" placeholder="Business email" />
-                    <input placeholder="Company name" />
-                    <input placeholder="Phone" />
-                    <textarea required rows={3} placeholder="Your message" />
+                    <input name="name" required placeholder="Your name" />
+                    <input name="email" required type="email" placeholder="Business email" />
+                    <input name="company" placeholder="Company name" />
+                    <input name="phone" placeholder="Phone" />
+                    <textarea name="message" required rows={3} placeholder="Your message" />
                     <button className="btn btn-primary" type="submit">Send <Send size={14} /></button>
                     <button type="button" className="choice-back" onClick={resetChat}>← Back to start</button>
                   </form>

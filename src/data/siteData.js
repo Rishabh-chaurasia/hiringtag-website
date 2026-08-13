@@ -29,12 +29,22 @@ export const siteData = {
     { num: '02', title: 'Innovative Hiring Strategies', desc: 'Modern sourcing approaches and technology-enabled solutions adapted to evolving workforce needs.' },
     { num: '03', title: 'Partnership & Integrity', desc: 'Collaborative relationships built on trust, transparency and a commitment to long-term business success.' },
   ],
+  focusAreas: [
+    { icon: 'Users', title: 'Bulk, Fresher & Campus Hiring', desc: 'Scalable volume hiring plus fresher and campus recruitment to build future-ready teams within timelines.' },
+    { icon: 'BriefcaseBusiness', title: 'Executive Search & Leadership Hiring', desc: 'Identifying and attracting senior leaders and CXOs who drive business growth.' },
+    { icon: 'Search', title: 'Specialized & Niche Hiring', desc: 'Finding rare, specialized and hard-to-find talent for critical, skill-specific roles.' },
+    { icon: 'Puzzle', title: 'Customized Recruitment', desc: 'Tailor-made recruitment strategies aligned with your business needs and culture.' },
+    { icon: 'CalendarClock', title: 'Project / Time-Bound Hiring', desc: 'Dedicated hiring support for urgent or time-sensitive requirements.' },
+    { icon: 'UserCheck', title: 'Onboarding Support', desc: 'Structured post-selection support ensuring smooth joining, coordination and a positive candidate transition.' },
+  ],
   services: [
     { title: 'Bulk Hiring', description: 'Scalable workforce solutions for high-volume hiring across FMCG, Retail, BFSI, IT, Logistics, Healthcare and other industries.' },
     { title: 'Fresher Hiring', description: 'End-to-end entry-level recruitment from talent sourcing to onboarding support.' },
     { title: 'Campus Recruitment', description: 'Partnerships with universities and institutions to identify and engage future-ready talent.' },
     { title: 'Executive & Leadership Hiring', description: 'Strategic recruitment for mid, senior and leadership positions across functions and sectors.' },
     { title: 'Customized Hiring Solutions', description: 'Tailored recruitment strategies for Startups, SMEs and Enterprises aligned with business goals, culture and growth plans.' },
+    { title: 'Onboarding Support', description: 'Structured post-selection support to help organizations ensure smooth joining, onboarding coordination and a positive candidate transition.' },
+    { title: 'Technical Consulting', description: 'Technology-focused talent and recruitment consulting to help organizations identify the right technical skills, roles and workforce requirements.' },
   ],
   expertise: [
     {
@@ -98,6 +108,7 @@ export const siteData = {
     { title: 'Candidate Assessment', desc: 'Every candidate is assessed for technical competencies, experience, cultural fit, and role alignment to ensure quality hiring.' },
     { title: 'Interview Coordination & Feedback', desc: 'We manage the interview process seamlessly while providing timely feedback and actionable insights to both clients and candidates.' },
     { title: 'Offer Management & Onboarding', desc: 'From offer negotiation to onboarding support, we ensure a smooth hiring experience and successful joining.' },
+    { title: 'Long-Term Partnership', desc: 'We stay connected beyond the placement to support workforce continuity, future hiring needs and long-term talent success.' },
   ],
   candidateHeading: 'We are committed to helping professionals build meaningful careers — not just secure jobs.',
   candidateProcess: [
@@ -110,11 +121,7 @@ export const siteData = {
   assistant: {
     initial: [
       { id: 'hiring', label: "I'm looking to hire", icon: 'briefcase' },
-      { id: 'services', label: 'Recruitment Services', icon: 'info' },
-      { id: 'industries', label: 'Industries We Serve', icon: 'grid' },
       { id: 'job', label: "I'm looking for a job", icon: 'user' },
-      { id: 'cv', label: 'Submit My CV', icon: 'file' },
-      { id: 'contact', label: 'Contact HiringTag', icon: 'mail' },
     ],
     flows: {
       hiring: [
@@ -143,6 +150,13 @@ export const siteData = {
       ],
     },
   },
+  // PLACEHOLDER VALUES: confirm with Hiring Tag before presenting as production claims.
+  trustStats: [
+    { value: 5, suffix: '+', label: 'Years of Recruitment Experience' },
+    { value: 50, suffix: '+', label: 'Clients / Organizations Served' },
+    { value: 500, suffix: '+', label: 'Candidates Connected' },
+    { value: 9, suffix: '', label: 'Industries Covered' },
+  ],
 };
 
 export const imagery = {

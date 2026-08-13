@@ -10,6 +10,7 @@ export function HowWeWork({ onJoin }) {
 
   const steps = tab === 'employer' ? siteData.employerProcess : siteData.candidateProcess;
   const isEmployer = tab === 'employer';
+  const mobileSteps = isEmployer ? steps.slice(0, 6) : steps;
 
   const switchTab = (newTab) => {
     setTab(newTab);
@@ -50,23 +51,10 @@ export function HowWeWork({ onJoin }) {
             <div className="process-desktop">
               {isEmployer ? (
                 <div className="process-employer-grid">
-                  {/* Row 1: 3 steps */}
                   <div className="process-timeline-row">
-                    {steps.slice(0, 3).map((step, i) => (
+                    {steps.slice(0, 6).map((step, i) => (
                       <div className="pt5-step" key={step.title}>
                         <span className="pt5-marker">{String(i + 1).padStart(2, '0')}</span>
-                        <div className="pt5-content">
-                          <h4>{step.title}</h4>
-                          <p>{step.desc}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                  {/* Row 2: 2 steps offset */}
-                  <div className="process-timeline-row process-timeline-row-2">
-                    {steps.slice(3).map((step, i) => (
-                      <div className="pt5-step" key={step.title}>
-                        <span className="pt5-marker">{String(i + 4).padStart(2, '0')}</span>
                         <div className="pt5-content">
                           <h4>{step.title}</h4>
                           <p>{step.desc}</p>
@@ -92,7 +80,7 @@ export function HowWeWork({ onJoin }) {
 
             {/* Mobile: vertical accordion timeline */}
             <div className="process-mobile">
-              {steps.map((step, i) => (
+              {mobileSteps.map((step, i) => (
                 <div className={`process-mobile-item ${openStep === i ? 'is-open' : ''}`} key={step.title}>
                   <button className="process-mobile-head" onClick={() => setOpenStep(openStep === i ? null : i)}>
                     <span className="pmh-marker">{String(i + 1).padStart(2, '0')}</span>

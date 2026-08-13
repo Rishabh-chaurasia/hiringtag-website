@@ -9,6 +9,21 @@ export function Contact() {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    const data = new FormData(e.target);
+    const lines = [
+      `Name: ${data.get('name') || ''}`,
+      audience === 'employer' ? `Company: ${data.get('company') || ''}` : `Current role / experience: ${data.get('roleExperience') || ''}`,
+      `Email: ${data.get('email') || ''}`,
+      `Phone: ${data.get('phone') || ''}`,
+      `I am: ${audience === 'employer' ? 'Employer' : 'Candidate'}`,
+      `${audience === 'employer' ? 'Hiring Requirement' : 'Subject'}: ${data.get('requirement') || ''}`,
+      '',
+      'Message:',
+      data.get('message') || '',
+    ];
+    const subject = encodeURIComponent(audience === 'employer' ? 'New Hiring Enquiry — Hiring Tag Website' : 'New Candidate Enquiry — Hiring Tag Website');
+    const body = encodeURIComponent(lines.join('\n'));
+    window.location.href = `mailto:${siteData.company.email}?subject=${subject}&body=${body}`;
     setSubmitted(true);
   };
 
@@ -75,12 +90,12 @@ export function Contact() {
               </div>
 
               <div className="form-row">
-                <label>Full Name<input required placeholder="Your full name" /></label>
-                <label>Company Name<input placeholder="Your company" /></label>
+                <label>Full Name<input name="name" required placeholder="Your full name" /></label>
+                {audience === 'employer' ? <label>Company Name<input name="company" required placeholder="Your company" /></label> : <label>Current role / experience<input name="roleExperience" placeholder="Your current role or experience" /></label>}
               </div>
               <div className="form-row">
-                <label>Email<input required type="email" placeholder="you@company.com" /></label>
-                <label>Phone<input placeholder="+91 00000 00000" /></label>
+                <label>Email<input name="email" required type="email" placeholder="you@company.com" /></label>
+                <label>Phone<input name="phone" placeholder="+91 00000 00000" /></label>
               </div>
 
               <label>I am:
@@ -91,16 +106,16 @@ export function Contact() {
               </label>
 
               <label>{audience === 'employer' ? 'Hiring Requirement' : 'Subject'}
-                <input required placeholder={audience === 'employer' ? "e.g. Sales roles across North India" : "How can we help?"} />
+                <input name="requirement" required placeholder={audience === 'employer' ? "e.g. Sales roles across North India" : "How can we help?"} />
               </label>
 
-              <label>Message<textarea required rows={3} placeholder="Tell us how we can help..." /></label>
+              <label>Message<textarea name="message" required rows={3} placeholder="Tell us how we can help..." /></label>
 
-              <label className="file-input">
+              {audience === 'candidate' && <label className="file-input">
                 <FileText size={16} />
-                <span>Attach a file (PDF, DOC, DOCX)</span>
-                <input type="file" accept=".pdf,.doc,.docx" />
-              </label>
+                <span>Attach your CV / resume (PDF or Word) — please attach it manually in the email that opens</span>
+                <input name="resume" type="file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+              </label>}
 
               <button className="btn btn-primary form-submit" type="submit">
                 Send Message <Send size={15} />

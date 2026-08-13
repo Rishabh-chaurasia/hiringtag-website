@@ -9,6 +9,19 @@ export function JoinNetworkModal({ open, onClose }) {
 
   const submit = (e) => {
     e.preventDefault();
+    const data = new FormData(e.target);
+    const lines = [
+      `Name: ${data.get('name') || ''}`,
+      `Email: ${data.get('email') || ''}`,
+      `Phone: ${data.get('phone') || ''}`,
+      `Current role / area of expertise: ${data.get('role') || ''}`,
+      '',
+      'Message:',
+      data.get('message') || '',
+    ];
+    const subject = encodeURIComponent('New Network Signup — Hiring Tag Website');
+    const body = encodeURIComponent(lines.join('\n'));
+    window.location.href = `mailto:${siteData.company.email}?subject=${subject}&body=${body}`;
     setDone(true);
   };
 
@@ -42,12 +55,12 @@ export function JoinNetworkModal({ open, onClose }) {
                 <form onSubmit={submit}>
                   <h3>Share your details.</h3>
                   <p>We'll be in touch when the right opportunity comes up.</p>
-                  <label>Full Name<input required placeholder="Your name" /></label>
-                  <label>Email Address<input required type="email" placeholder="you@email.com" /></label>
-                  <label>Phone Number<input placeholder="+91 00000 00000" /></label>
-                  <label>Current Role / Area of Expertise<input placeholder="e.g. Senior Software Engineer" /></label>
-                  <label>Message<textarea rows={3} placeholder="Tell us about your career goals..." /></label>
-                  <label className="file-input"><Upload size={16} /><span>Upload your CV / Resume (PDF, DOC, DOCX)</span><input type="file" accept=".pdf,.doc,.docx" /></label>
+                  <label>Full Name<input name="name" required placeholder="Your name" /></label>
+                  <label>Email Address<input name="email" required type="email" placeholder="you@email.com" /></label>
+                  <label>Phone Number<input name="phone" placeholder="+91 00000 00000" /></label>
+                  <label>Current Role / Area of Expertise<input name="role" placeholder="e.g. Senior Software Engineer" /></label>
+                  <label>Message<textarea name="message" rows={3} placeholder="Tell us about your career goals..." /></label>
+                  <label className="file-input"><Upload size={16} /><span>Upload your CV / Resume — please attach it manually in the email that opens</span><input name="resume" type="file" accept=".pdf,.doc,.docx" /></label>
                   <button className="btn btn-primary form-submit" type="submit">Join Our Network <ArrowRight size={15} /></button>
                   <p className="form-disclaimer">By joining, you agree to be contacted by {siteData.company.name} regarding relevant opportunities.</p>
                 </form>

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Navbar } from '@/components/Navbar';
 import { Hero } from '@/components/Hero';
 import { Stats } from '@/components/Stats';
+import { TrustStats } from '@/components/TrustStats';
 import { About } from '@/components/About';
 import { MissionVision } from '@/components/MissionVision';
 import { Services } from '@/components/Services';
@@ -25,6 +26,7 @@ export function App() {
         <Hero onPartner={scrollToContact} />
         <Stats />
         <About />
+        <TrustStats />
         <MissionVision />
         <Services />
         <Expertise />

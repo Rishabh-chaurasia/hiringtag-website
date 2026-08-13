@@ -1,26 +1,26 @@
-import { motion } from 'framer-motion';
-import { ArrowRight, BriefcaseBusiness, GraduationCap, School, SlidersHorizontal, Users } from 'lucide-react';
+import { BriefcaseBusiness, CalendarClock, Puzzle, Search, UserCheck, Users } from 'lucide-react';
 import { siteData } from '@/data/siteData';
-import { SectionIntro } from './primitives';
+import { Reveal, SectionIntro } from './primitives';
+
+const focusIcons = { Users, BriefcaseBusiness, Search, Puzzle, CalendarClock, UserCheck };
+const accentColors = ['var(--red)', 'var(--blue)', 'var(--orange)', 'var(--green)', 'var(--purple)', 'var(--teal)'];
 
 export function Services() {
-  const serviceIcons = [Users, GraduationCap, School, BriefcaseBusiness, SlidersHorizontal];
-
   return (
     <section id="services" className="section services">
       <div className="container">
-        <SectionIntro eyebrow="What We Do" title={<>Recruitment solutions built for <span className="title-accent">your business.</span></>} body="From high-volume workforce hiring to executive search, our services are designed to meet diverse talent acquisition needs across industries." />
-        <div className="service-list">
-          {siteData.services.map((s, i) => (
-            <motion.div className="service-row" key={s.title} whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
-              <span className="service-num">{String(i + 1).padStart(2, '0')}</span>
-              <div className="service-body">
-                <div className="service-title"><span className="service-icon">{(() => { const Icon = serviceIcons[i]; return <Icon size={16} strokeWidth={1.7} />; })()}</span><h3>{s.title}</h3></div>
-                <p>{s.description}</p>
-              </div>
-              <span className="service-arrow"><ArrowRight size={18} /></span>
-            </motion.div>
-          ))}
+        <SectionIntro eyebrow="What We Do" title={<>Recruitment and consulting solutions built for <span className="title-accent">your business</span></>} body="From high-volume workforce hiring to executive search, our services are designed to meet diverse talent acquisition needs across industries." />
+        <div className="service-focus-grid">
+          {siteData.focusAreas.map((s, i) => {
+            const Icon = focusIcons[s.icon];
+            return (
+              <Reveal className="service-focus-card" key={s.title} delay={0.15 + i * 0.06} style={{ '--accent': accentColors[i] }}>
+                <span className="service-focus-icon"><Icon size={20} strokeWidth={1.7} /></span>
+                <h3>{s.title}</h3>
+                <p>{s.desc}</p>
+              </Reveal>
+            );
+          })}
         </div>
       </div>
     </section>
