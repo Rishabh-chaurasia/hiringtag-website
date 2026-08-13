@@ -154,8 +154,8 @@ export const siteData = {
   trustStats: [
     { value: 5, suffix: '+', label: 'Years of Recruitment Experience' },
     { value: 50, suffix: '+', label: 'Clients / Organizations Served' },
-    { value: 500, suffix: '+', label: 'Candidates Connected' },
-    { value: 9, suffix: '', label: 'Industries Covered' },
+    { value: 500, suffix: '+', label: 'Candidates Hired' },
+    { value: 9, suffix: '', label: 'Industries served' },
   ],
 };
 
