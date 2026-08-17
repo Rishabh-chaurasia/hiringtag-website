@@ -6,7 +6,7 @@ import { Reveal, SectionIntro } from './primitives';
 
 export function HowWeWork({ onJoin }) {
   const [tab, setTab] = useState('employer');
-  const [openStep, setOpenStep] = useState(0);
+  const [openStep, setOpenStep] = useState(null);
 
   const steps = tab === 'employer' ? siteData.employerProcess : siteData.candidateProcess;
   const isEmployer = tab === 'employer';
@@ -14,7 +14,7 @@ export function HowWeWork({ onJoin }) {
 
   const switchTab = (newTab) => {
     setTab(newTab);
-    setOpenStep(0);
+    setOpenStep(null);
   };
 
   const scrollToContact = () => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });

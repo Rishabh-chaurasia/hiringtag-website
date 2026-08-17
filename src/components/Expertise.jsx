@@ -5,8 +5,10 @@ import { siteData } from '@/data/siteData';
 import { SectionIntro } from './primitives';
 
 export function Expertise() {
-  const [selectedIdx, setSelectedIdx] = useState(0);
-  const selected = siteData.expertise[selectedIdx];
+  const [selectedIdx, setSelectedIdx] = useState(() => (
+    typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches ? null : 0
+  ));
+  const selected = selectedIdx !== null ? siteData.expertise[selectedIdx] : null;
   const scrollToContact = () => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
 
   return (
@@ -15,7 +17,7 @@ export function Expertise() {
         <SectionIntro
           eyebrow="Industry Expertise"
           title={<>Industry-focused <span className="title-accent">recruitment expertise.</span></>}
-          body="At Hiring Tag, we understand that every industry has unique talent requirements. Our domain-focused recruitment approach enables us to identify, assess, and deliver professionals who align with your business objectives, culture and growth strategy."
+          body="Our domain-focused approach enables us to identify and deliver the right talent, aligned with your business objectives, culture, and long-term growth."
         />
 
         <div className="expertise-master-detail">
@@ -36,11 +38,12 @@ export function Expertise() {
 
           <motion.article
             className="expertise-detail"
-            key={selected.name}
+            key={selected ? selected.name : 'empty'}
             initial={{ opacity: 0, y: 5 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.2 }}
           >
+            {selected ? (
             <div className="detail-inner">
               <div className="detail-top">
                 <div className="detail-top-left">
@@ -63,6 +66,12 @@ export function Expertise() {
                 </div>
               </div>
             </div>
+            ) : (
+              <div className="detail-empty">
+                <Briefcase size={20} strokeWidth={1.6} />
+                <p>Tap an industry above to see roles, functions and hiring levels.</p>
+              </div>
+            )}
           </motion.article>
         </div>
       </div>

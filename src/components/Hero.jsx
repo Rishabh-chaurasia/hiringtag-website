@@ -37,7 +37,7 @@ export function Hero({ onPartner }) {
             <img src={imagery.hero} alt="A professional recruitment consultation between a Hiring Tag consultant and a business client" />
           </div>
           <motion.div className="hero-brand-moment" initial={{ opacity: 0, x: -16 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.6 }}>
-            <span className="hbm-mark">HT</span>
+            <span className="hbm-mark"><img src="/logo-icon.png" alt="Hiring Tag" /></span>
             <div>
               <strong>Hiring Tag</strong>
               <span>Strategic Talent Partners</span>

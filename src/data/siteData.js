@@ -25,9 +25,9 @@ export const siteData = {
     'Quality & Integrity',
   ],
   principles: [
-    { num: '01', title: 'Industry Expertise', desc: 'Deep domain understanding across sectors that enables precise, relevant talent identification.' },
-    { num: '02', title: 'Innovative Hiring Strategies', desc: 'Modern sourcing approaches and technology-enabled solutions adapted to evolving workforce needs.' },
-    { num: '03', title: 'Partnership & Integrity', desc: 'Collaborative relationships built on trust, transparency and a commitment to long-term business success.' },
+    { num: '01', title: 'Industry Expertise', desc: 'Deep industry expertise for precise talent identification.' },
+    { num: '02', title: 'Innovative Hiring Strategies', desc: 'Modern sourcing and technology-driven hiring solutions.' },
+    { num: '03', title: 'Partnership & Integrity', desc: 'Trust-driven partnerships focused on long-term success.' },
   ],
   focusAreas: [
     { icon: 'Users', title: 'Bulk, Fresher & Campus Hiring', desc: 'Scalable volume hiring plus fresher and campus recruitment to build future-ready teams within timelines.' },
@@ -117,7 +117,7 @@ export const siteData = {
     { title: 'Transparent Feedback', desc: 'Wherever possible, we share constructive feedback to support your professional growth.' },
     { title: 'Continuous Support', desc: "Whether you're selected or not, we remain your long-term career partner, connecting you with future opportunities aligned with your potential." },
   ],
-  processClosing: 'At Hiring Tag, we don\'t just fill positions — we build lasting partnerships, create exceptional careers, and help organizations achieve sustainable growth through the power of the right talent.',
+  processClosing: 'We build lasting partnerships, exceptional careers, and sustainable growth through the right talent.',
   assistant: {
     initial: [
       { id: 'hiring', label: "I'm looking to hire", icon: 'briefcase' },
@@ -155,7 +155,7 @@ export const siteData = {
     { value: 5, suffix: '+', label: 'Years of Recruitment Experience' },
     { value: 50, suffix: '+', label: 'Clients / Organizations Served' },
     { value: 500, suffix: '+', label: 'Candidates Hired' },
-    { value: 9, suffix: '', label: 'Industries served' },
+    { value: 9, suffix: '', label: 'Industries Covered' },
   ],
 };
 
