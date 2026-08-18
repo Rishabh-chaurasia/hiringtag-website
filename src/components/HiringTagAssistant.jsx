@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ArrowRight, BriefcaseBusiness, FileText, Grid3x3, Info, Mail, Send, Sparkles, User, X } from 'lucide-react';
+import { ArrowRight, BriefcaseBusiness, FileText, Grid3x3, Info, Mail, Send, User, X } from 'lucide-react';
 import { siteData } from '@/data/siteData';
 import { Logo } from './Logo';
 
@@ -91,7 +91,7 @@ export function HiringTagAssistant() {
       <AnimatePresence>
         {!open && (
           <motion.button className="assistant-trigger" onClick={() => setOpen(true)} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} transition={{ duration: 0.3 }} aria-label="Open Hiring Tag Assistant">
-            <span className="at-avatar">HT</span>
+            <span className="at-avatar"><img src="/logo-icon.png" alt="Hiring Tag" /></span>
             <span className="at-text"><small>Hiring Tag Assistant</small><strong>How can we help?</strong></span>
           </motion.button>
         )}
@@ -110,7 +110,7 @@ export function HiringTagAssistant() {
             >
               <div className="assistant-head">
                 <div className="ah-left">
-                  <span className="ah-avatar"><Sparkles size={14} /></span>
+                  <span className="ah-avatar"><img src="/logo-icon.png" alt="Hiring Tag" /></span>
                   <div><strong>Hiring Tag Assistant</strong><small><i className="status-dot" />How can we help you today?</small></div>
                 </div>
                 <button className="ah-close" onClick={() => setOpen(false)} aria-label="Close assistant"><X size={18} /></button>
