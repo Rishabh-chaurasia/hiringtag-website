@@ -1624,3 +1624,25 @@ input:focus, select:focus, textarea:focus { border-color: var(--blue); box-shado
   .footer-csr-banner > span:last-child { width: 100%; padding-left: 50px; }
   .footer-bottom { align-items: flex-start; flex-direction: column; gap: 18px; }
 }
+
+/* Expertise page initial image panel */
+.industry-expertise-empty {
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  background: #eef4fb;
+}
+.industry-empty-images { width: 100%; height: 100%; min-height: 100%; }
+.industry-empty-images img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+
+@media (max-width: 900px) {
+  .industry-empty-images { min-height: 340px; }
+}
+
+@media (max-width: 680px) {
+  .industry-empty-images { min-height: 250px; }
+}
+
+@media (min-width: 681px) and (max-height: 840px) {
+  .industry-empty-images { min-height: 504px; }
+}

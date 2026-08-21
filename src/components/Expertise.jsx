@@ -29,7 +29,7 @@ const orderedExpertise = industryOrder
   .filter(Boolean);
 
 export function Expertise({ compact = false, onNavigate }) {
-  const [activeIndustry, setActiveIndustry] = useState(compact ? null : 2);
+  const [activeIndustry, setActiveIndustry] = useState(null);
 
   if (compact) {
     const selectedIndustry = activeIndustry === null ? null : orderedExpertise[activeIndustry];
@@ -84,7 +84,7 @@ export function Expertise({ compact = false, onNavigate }) {
     );
   }
 
-  const selected = orderedExpertise[activeIndustry];
+  const selected = activeIndustry === null ? null : orderedExpertise[activeIndustry];
 
   return (
     <section className="section industries-showcase industries-page" aria-labelledby="industry-expertise-heading">
@@ -107,7 +107,7 @@ export function Expertise({ compact = false, onNavigate }) {
                   aria-selected={activeIndustry === index}
                   aria-controls="industry-expertise-detail"
                   className={activeIndustry === index ? 'is-active' : ''}
-                  onClick={() => setActiveIndustry(index)}
+                  onClick={() => setActiveIndustry(activeIndustry === index ? null : index)}
                 >
                   <span className="industry-expertise-icon" aria-hidden="true"><IndustryIcon size={18} strokeWidth={1.7} /></span>
                   <strong>{industry.name}</strong>
@@ -117,35 +117,43 @@ export function Expertise({ compact = false, onNavigate }) {
             })}
           </div>
 
-          <article className="industry-expertise-detail" id="industry-expertise-detail" role="tabpanel">
-            <div className="industry-detail-head">
-              <div className="industry-detail-summary">
-                <span className="industry-detail-label"><BriefcaseBusiness size={15} strokeWidth={1.8} />{selected.name}</span>
-                <p>{selected.description}</p>
-              </div>
-              <div className="industry-detail-cta">
-                <span>Looking for talent in this industry?</span>
-                <button type="button" className="text-link" onClick={() => onNavigate?.('/contact')}>
-                  Discuss Your Hiring Needs <ArrowRight size={15} />
-                </button>
-              </div>
-            </div>
-
-            <div className="industry-detail-columns">
-              <div className="industry-domains">
-                <h2>Domains / Functions</h2>
-                <div className="industry-domain-tags">
-                  {selected.domains.map((domain) => <span key={domain}>{domain}</span>)}
+          {selected ? (
+            <article className="industry-expertise-detail" id="industry-expertise-detail" role="tabpanel">
+              <div className="industry-detail-head">
+                <div className="industry-detail-summary">
+                  <span className="industry-detail-label"><BriefcaseBusiness size={15} strokeWidth={1.8} />{selected.name}</span>
+                  <p>{selected.description}</p>
+                </div>
+                <div className="industry-detail-cta">
+                  <span>Looking for talent in this industry?</span>
+                  <button type="button" className="text-link" onClick={() => onNavigate?.('/contact')}>
+                    Discuss Your Hiring Needs <ArrowRight size={15} />
+                  </button>
                 </div>
               </div>
-              <div className="industry-levels">
-                <h2>Hiring Levels</h2>
-                <ul>
-                  {selected.levels.map((level) => <li key={level}>{level}</li>)}
-                </ul>
+
+              <div className="industry-detail-columns">
+                <div className="industry-domains">
+                  <h2>Domains / Functions</h2>
+                  <div className="industry-domain-tags">
+                    {selected.domains.map((domain) => <span key={domain}>{domain}</span>)}
+                  </div>
+                </div>
+                <div className="industry-levels">
+                  <h2>Hiring Levels</h2>
+                  <ul>
+                    {selected.levels.map((level) => <li key={level}>{level}</li>)}
+                  </ul>
+                </div>
               </div>
-            </div>
-          </article>
+            </article>
+          ) : (
+            <section className="industry-expertise-empty" id="industry-expertise-detail" role="tabpanel" aria-label="Industry expertise introduction">
+              <div className="industry-empty-images" aria-hidden="true">
+                <img className="industry-empty-image-main" src="/industry-expertise-intro-v2.png" alt="" />
+              </div>
+            </section>
+          )}
         </div>
       </div>
     </section>
