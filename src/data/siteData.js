@@ -11,18 +11,12 @@ export const siteData = {
     linkedin: '#',
   },
   nav: [
-    ['Home', 'home'],
-    ['About Us', 'about'],
-    ['Services', 'services'],
-    ['Expertise', 'expertise'],
-    ['How We Work', 'process'],
-    ['Contact Us', 'contact'],
-  ],
-  credibility: [
-    'Industry-Focused Recruitment',
-    'Strategic Talent Partnership',
-    'Technology-Enabled Hiring',
-    'Quality & Integrity',
+    ['Home', '/'],
+    ['About Us', '/about'],
+    ['Services', '/services'],
+    ['Expertise', '/expertise'],
+    ['How We Work', '/how-we-work'],
+    ['Contact Us', '/contact'],
   ],
   principles: [
     { num: '01', title: 'Industry Expertise', desc: 'Deep industry expertise for precise talent identification.' },
@@ -30,12 +24,12 @@ export const siteData = {
     { num: '03', title: 'Partnership & Integrity', desc: 'Trust-driven partnerships focused on long-term success.' },
   ],
   focusAreas: [
-    { icon: 'Users', title: 'Bulk, Fresher & Campus Hiring', desc: 'Scalable volume hiring plus fresher and campus recruitment to build future-ready teams within timelines.' },
-    { icon: 'BriefcaseBusiness', title: 'Executive Search & Leadership Hiring', desc: 'Identifying and attracting senior leaders and CXOs who drive business growth.' },
-    { icon: 'Search', title: 'Specialized & Niche Hiring', desc: 'Finding rare, specialized and hard-to-find talent for critical, skill-specific roles.' },
-    { icon: 'Puzzle', title: 'Customized Recruitment', desc: 'Tailor-made recruitment strategies aligned with your business needs and culture.' },
-    { icon: 'CalendarClock', title: 'Project / Time-Bound Hiring', desc: 'Dedicated hiring support for urgent or time-sensitive requirements.' },
-    { icon: 'UserCheck', title: 'Onboarding Support', desc: 'Structured post-selection support ensuring smooth joining, coordination and a positive candidate transition.' },
+    { icon: 'BriefcaseBusiness', title: 'Executive / Leadership Hiring', desc: 'Strategic search for senior, executive, and leadership positions.' },
+    { icon: 'Search', title: 'Specialized & Niche Hiring', desc: 'Focused sourcing for rare skills and hard-to-fill positions.' },
+    { icon: 'Users', title: 'Volume Hiring', desc: 'Scalable recruitment support for high-volume workforce requirements.' },
+    { icon: 'CalendarClock', title: 'Fresher Hiring', desc: 'Connecting organizations with job-ready entry-level talent.' },
+    { icon: 'Puzzle', title: 'Talent Consulting', desc: 'Practical guidance for workforce planning and hiring strategy.' },
+    { icon: 'UserCheck', title: 'Onboarding Support', desc: 'Coordinated support from offer acceptance through successful joining.' },
   ],
   services: [
     { title: 'Bulk Hiring', description: 'Scalable workforce solutions for high-volume hiring across FMCG, Retail, BFSI, IT, Logistics, Healthcare and other industries.' },
@@ -90,7 +84,7 @@ export const siteData = {
       levels: ['Executive / Associate', 'Senior Executive / Specialist', 'Academic / Functional Lead', 'Manager', 'Senior Manager', 'Head', 'Director', 'VP', 'CXO / Founder-level'],
     },
     {
-      name: 'Automotive',
+      name: 'Automobile',
       description: 'Supporting automotive manufacturers, dealerships and component businesses with talent across engineering, sales, after-sales and operations.',
       domains: ['Engineering', 'Manufacturing', 'Production', 'Quality', 'R&D', 'Automotive Design', 'Supply Chain', 'Procurement', 'Sales', 'Dealer Operations', 'After-Sales', 'Service', 'Maintenance', 'Plant Operations', 'Finance', 'Human Resources'],
       levels: ['Engineer / Executive', 'Senior Engineer / Specialist', 'Team Lead', 'Assistant Manager', 'Manager', 'Senior Manager', 'Plant / Functional Head', 'Business Head', 'VP / Director', 'CXO'],
@@ -102,13 +96,26 @@ export const siteData = {
       levels: ['Executive / Associate', 'Specialist', 'Senior Specialist', 'Lead', 'Manager', 'Senior Manager', 'Head / Director', 'VP', 'CXO / Founder-level'],
     },
   ],
+  industries: [
+    { name: 'IT & Technology', icon: 'MonitorCog' },
+    { name: 'BFSI', icon: 'Landmark' },
+    { name: 'Healthcare', icon: 'HeartPulse' },
+    { name: 'Retail', icon: 'ShoppingBag' },
+    { name: 'FMCG', icon: 'ShoppingCart' },
+    { name: 'Manufacturing', icon: 'Factory' },
+    { name: 'Logistics', icon: 'Truck' },
+    { name: 'E-commerce', icon: 'Store' },
+    { name: 'Telecom', icon: 'RadioTower' },
+    { name: 'Professional Services', icon: 'BriefcaseBusiness' },
+  ],
   employerProcess: [
-    { title: 'Understand Your Needs', desc: 'We begin by understanding your business, culture, hiring objectives, and role requirements.' },
-    { title: 'Strategic Talent Sourcing', desc: 'We identify, screen, and evaluate candidates through targeted sourcing, AI-powered tools, and industry expertise.' },
-    { title: 'Candidate Assessment', desc: 'Every candidate is assessed for technical competencies, experience, cultural fit, and role alignment to ensure quality hiring.' },
-    { title: 'Interview Coordination & Feedback', desc: 'We manage the interview process seamlessly while providing timely feedback and actionable insights to both clients and candidates.' },
-    { title: 'Offer Management & Onboarding', desc: 'From offer negotiation to onboarding support, we ensure a smooth hiring experience and successful joining.' },
-    { title: 'Long-Term Partnership', desc: 'We stay connected beyond the placement to support workforce continuity, future hiring needs and long-term talent success.' },
+    { title: 'Requirement Understanding', desc: 'We define the role, skills, experience, culture and hiring priorities before the search begins.' },
+    { title: 'Sourcing', desc: 'We identify relevant talent through focused research, trusted networks and technology-enabled sourcing.' },
+    { title: 'Screening', desc: 'We assess experience, capability, role alignment and communication before presenting candidates.' },
+    { title: 'Interview Coordination', desc: 'We manage scheduling, communication and timely feedback throughout the interview process.' },
+    { title: 'Offer Support', desc: 'We support offer alignment, expectation management and clear communication through closure.' },
+    { title: 'Joining Follow-up', desc: 'We stay connected with the candidate and employer through the notice and joining period.' },
+    { title: 'Onboarding Assistance', desc: 'We support a smooth transition and remain available as the new hire settles into the role.' },
   ],
   candidateHeading: 'We are committed to helping professionals build meaningful careers — not just secure jobs.',
   candidateProcess: [
@@ -117,7 +124,6 @@ export const siteData = {
     { title: 'Transparent Feedback', desc: 'Wherever possible, we share constructive feedback to support your professional growth.' },
     { title: 'Continuous Support', desc: "Whether you're selected or not, we remain your long-term career partner, connecting you with future opportunities aligned with your potential." },
   ],
-  processClosing: 'We build lasting partnerships, exceptional careers, and sustainable growth through the right talent.',
   assistant: {
     initial: [
       { id: 'hiring', label: "I'm looking to hire", icon: 'briefcase' },
@@ -160,6 +166,8 @@ export const siteData = {
 };
 
 export const imagery = {
-  hero: 'https://images.pexels.com/photos/3760067/pexels-photo-3760067.jpeg?auto=compress&cs=tinysrgb&h=900&w=1400',
-  about: 'https://images.pexels.com/photos/5439157/pexels-photo-5439157.jpeg?auto=compress&cs=tinysrgb&h=900&w=1400',
+  hero: '/hero-recruitment-v5.png',
+  about: '/about-partnership-v3.webp',
+  story: 'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&h=900&w=1400',
+  csr: '/csr-initiative-v2.png',
 };

@@ -8,12 +8,13 @@ const flowIcons = {
   user: User, briefcase: BriefcaseBusiness, info: Info, mail: Mail, grid: Grid3x3, file: FileText,
 };
 
-export function HiringTagAssistant() {
+export function HiringTagAssistant({ onNavigate }) {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState([{ from: 'bot', text: "Hi, I'm the Hiring Tag assistant. How can we help you today?" }]);
   const [activeFlow, setActiveFlow] = useState(null);
   const [showForm, setShowForm] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [footerVisible, setFooterVisible] = useState(false);
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth <= 768);
@@ -26,6 +27,14 @@ export function HiringTagAssistant() {
     document.body.style.overflow = open ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
   }, [open]);
+
+  useEffect(() => {
+    const footer = document.querySelector('.footer');
+    if (!footer) return undefined;
+    const observer = new IntersectionObserver(([entry]) => setFooterVisible(entry.isIntersecting), { threshold: 0.02 });
+    observer.observe(footer);
+    return () => observer.disconnect();
+  }, []);
 
   const choices = siteData.assistant.initial;
   const flowOptions = activeFlow ? siteData.assistant.flows[activeFlow] : null;
@@ -55,8 +64,9 @@ export function HiringTagAssistant() {
   const handleFlowAction = (action) => {
     setMessages((m) => [...m, { from: 'user', text: action.label }]);
     if (action.type === 'link' && action.target) {
+      const routes = { contact: '/contact', services: '/services', expertise: '/expertise' };
       setOpen(false);
-      document.getElementById(action.target)?.scrollIntoView({ behavior: 'smooth' });
+      onNavigate(routes[action.target] || '/');
       setTimeout(resetChat, 400);
     }
   };
@@ -88,14 +98,11 @@ export function HiringTagAssistant() {
 
   return (
     <>
-      <AnimatePresence>
-        {!open && (
-          <motion.button className="assistant-trigger" onClick={() => setOpen(true)} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} transition={{ duration: 0.3 }} aria-label="Open Hiring Tag Assistant">
-            <span className="at-avatar"><img src="/logo-icon.png" alt="Hiring Tag" /></span>
-            <span className="at-text"><small>Hiring Tag Assistant</small><strong>How can we help?</strong></span>
-          </motion.button>
-        )}
-      </AnimatePresence>
+      {!open && (
+        <button className={`assistant-trigger ${footerVisible ? 'is-footer-visible' : ''}`} onClick={() => setOpen(true)} aria-label="Open Hiring Tag Assistant">
+          <span className="brand-monogram" aria-hidden="true">HT</span>
+        </button>
+      )}
 
       <AnimatePresence>
         {open && (
@@ -110,7 +117,7 @@ export function HiringTagAssistant() {
             >
               <div className="assistant-head">
                 <div className="ah-left">
-                  <span className="ah-avatar"><img src="/logo-icon.png" alt="Hiring Tag" /></span>
+                  <span className="ah-avatar"><span className="brand-monogram" aria-hidden="true">HT</span></span>
                   <div><strong>Hiring Tag Assistant</strong><small><i className="status-dot" />How can we help you today?</small></div>
                 </div>
                 <button className="ah-close" onClick={() => setOpen(false)} aria-label="Close assistant"><X size={18} /></button>

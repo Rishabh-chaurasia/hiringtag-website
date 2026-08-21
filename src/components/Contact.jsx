@@ -69,11 +69,11 @@ export function Contact() {
             ))}
             <a className="contact-detail" href={`https://wa.me/${siteData.company.whatsapp}`} target="_blank" rel="noopener noreferrer">
               <span className="cd-icon cd-whatsapp"><MessageCircle size={15} /></span>
-              <div><small>WhatsApp</small><strong>Message us on WhatsApp</strong></div>
+              <div><small>WhatsApp</small><strong>Message us</strong></div>
             </a>
             <a className="contact-detail" href="https://www.linkedin.com/company/hiring-tag-india/posts/?feedView=all" target="_blank" rel="noopener noreferrer">
               <span className="cd-icon cd-linkedin"><Linkedin size={15} /></span>
-              <div><small>LinkedIn</small><strong>Follow Hiring Tag</strong></div>
+              <div><small>LinkedIn</small><strong>Follow us</strong></div>
             </a>
           </Reveal>
         </div>

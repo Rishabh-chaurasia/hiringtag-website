@@ -1,122 +1,79 @@
 import { useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowRight, Briefcase, Plus, User } from 'lucide-react';
 import { siteData } from '@/data/siteData';
-import { Reveal, SectionIntro } from './primitives';
+import { SectionIntro } from './primitives';
+
+const employerSteps = [
+  { title: 'Understand Your Needs', desc: 'We begin by understanding your business, culture, hiring objectives, and role requirements.' },
+  { title: 'Strategic Talent Sourcing', desc: 'We identify, screen, and evaluate candidates through targeted sourcing, technology-enabled tools, and industry expertise.' },
+  { title: 'Candidate Assessment', desc: 'Every candidate is assessed for technical competencies, experience, cultural fit, and role alignment to ensure quality hiring.' },
+  { title: 'Interview Coordination & Feedback', desc: 'We manage the interview process seamlessly while providing timely feedback and actionable insights to both clients and candidates.' },
+  { title: 'Offer Management & Onboarding', desc: 'From offer negotiation to onboarding support, we ensure a smooth hiring experience and successful joining.' },
+  { title: 'Long-Term Partnership', desc: 'We stay connected beyond the placement to support workforce continuity, future hiring needs and long-term talent success.' },
+];
 
 export function HowWeWork({ onJoin }) {
   const [tab, setTab] = useState('employer');
   const [openStep, setOpenStep] = useState(null);
-
-  const steps = tab === 'employer' ? siteData.employerProcess : siteData.candidateProcess;
   const isEmployer = tab === 'employer';
-  const mobileSteps = isEmployer ? steps.slice(0, 6) : steps;
+  const steps = isEmployer ? employerSteps : siteData.candidateProcess;
 
-  const switchTab = (newTab) => {
-    setTab(newTab);
+  const switchTab = (nextTab) => {
+    setTab(nextTab);
     setOpenStep(null);
   };
 
-  const scrollToContact = () => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-
   return (
-    <section id="process" className="section process">
+    <section className="section process process-page" aria-labelledby="process-heading">
       <div className="container">
-        <SectionIntro eyebrow="Our Approach" title={<>A recruitment process built around <span className="title-accent">your business.</span></>} />
+        <SectionIntro eyebrow="Our Approach" title={<span id="process-heading">A recruitment process built around <span className="title-accent">your business.</span></span>} />
 
         <div className="process-segmented">
-          <button className={`seg-btn ${isEmployer ? 'is-active' : ''}`} onClick={() => switchTab('employer')}>
-            <Briefcase size={14} /> For Employers
-          </button>
-          <button className={`seg-btn ${!isEmployer ? 'is-active' : ''}`} onClick={() => switchTab('candidate')}>
-            <User size={14} /> For Candidates
-          </button>
+          <button className={`seg-btn ${isEmployer ? 'is-active' : ''}`} onClick={() => switchTab('employer')}><Briefcase size={14} />For Employers</button>
+          <button className={`seg-btn ${!isEmployer ? 'is-active' : ''}`} onClick={() => switchTab('candidate')}><User size={14} />For Candidates</button>
         </div>
 
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={tab}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.25 }}
-          >
-            <p className="process-intro-text">
-              {isEmployer
-                ? 'At Hiring Tag, we follow a structured, technology-enabled recruitment process that combines AI-driven efficiency with expert human insights to deliver the right talent.'
-                : siteData.candidateHeading}
-            </p>
+        <p className="process-intro-text">
+          {isEmployer
+            ? 'At Hiring Tag, we follow a structured, technology-enabled recruitment process that combines efficient sourcing with expert human insights to deliver the right talent.'
+            : siteData.candidateHeading}
+        </p>
 
-            {/* Desktop layout */}
-            <div className="process-desktop">
-              {isEmployer ? (
-                <div className="process-employer-grid">
-                  <div className="process-timeline-row">
-                    {steps.slice(0, 6).map((step, i) => (
-                      <div className="pt5-step" key={step.title}>
-                        <span className="pt5-marker">{String(i + 1).padStart(2, '0')}</span>
-                        <div className="pt5-content">
-                          <h4>{step.title}</h4>
-                          <p>{step.desc}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ) : (
-                <div className="process-candidate-grid">
-                  {steps.map((step, i) => (
-                    <div className="pcg-step" key={step.title}>
-                      <span className="pcg-marker">{String(i + 1).padStart(2, '0')}</span>
-                      <div className="pcg-content">
-                        <h4>{step.title}</h4>
-                        <p>{step.desc}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
+        <div className="process-desktop">
+          <div className={`process-card-grid ${!isEmployer ? 'is-candidate' : ''}`}>
+            {steps.map((step, index) => (
+              <article className="process-card" key={step.title}>
+                <span className="process-card-number">{String(index + 1).padStart(2, '0')}</span>
+                <div className="process-card-content"><h3>{step.title}</h3><p>{step.desc}</p></div>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <div className="process-mobile">
+          {steps.map((step, index) => (
+            <div className={`process-mobile-item ${openStep === index ? 'is-open' : ''}`} key={step.title}>
+              <button className="process-mobile-head" onClick={() => setOpenStep(openStep === index ? null : index)}>
+                <span className="pmh-marker">{String(index + 1).padStart(2, '0')}</span>
+                <span className="pmh-title">{step.title}</span>
+                <span className="pmh-toggle"><Plus size={16} /></span>
+              </button>
+              {openStep === index && <div className="process-mobile-body"><p>{step.desc}</p></div>}
             </div>
+          ))}
+        </div>
 
-            {/* Mobile: vertical accordion timeline */}
-            <div className="process-mobile">
-              {mobileSteps.map((step, i) => (
-                <div className={`process-mobile-item ${openStep === i ? 'is-open' : ''}`} key={step.title}>
-                  <button className="process-mobile-head" onClick={() => setOpenStep(openStep === i ? null : i)}>
-                    <span className="pmh-marker">{String(i + 1).padStart(2, '0')}</span>
-                    <span className="pmh-title">{step.title}</span>
-                    <span className="pmh-toggle"><Plus size={16} /></span>
-                  </button>
-                  <AnimatePresence>
-                    {openStep === i && (
-                      <motion.div className="process-mobile-body" initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.25 }}>
-                        <p>{step.desc}</p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              ))}
+        {!isEmployer && (
+          <div className="candidate-cta">
+            <div className="candidate-cta-actions">
+              <button className="btn btn-primary" onClick={onJoin}>Submit Your CV <ArrowRight size={15} /></button>
             </div>
+          </div>
+        )}
 
-            {/* Candidate CTAs */}
-            {!isEmployer && (
-              <Reveal className="candidate-cta" delay={0.1}>
-                <div className="candidate-cta-actions">
-                  <button className="btn btn-primary" onClick={onJoin}>Submit Your CV <ArrowRight size={15} /></button>
-                  <button className="btn btn-ghost" onClick={scrollToContact}>Explore Opportunities <ArrowRight size={15} /></button>
-                </div>
-              </Reveal>
-            )}
-          </motion.div>
-        </AnimatePresence>
-
-        {/* Closing message */}
-        <Reveal className="process-closing" delay={0.1}>
-          <p>{siteData.processClosing}</p>
-          <button className="btn btn-primary" onClick={scrollToContact}>
-            Start a Conversation <ArrowRight size={15} />
-          </button>
-        </Reveal>
+        <div className="process-closing">
+          <p>We build lasting partnerships, exceptional careers, and sustainable growth through the right talent.</p>
+        </div>
       </div>
     </section>
   );

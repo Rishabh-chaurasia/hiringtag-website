@@ -1,78 +1,151 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { ArrowRight, Briefcase, ChevronRight } from 'lucide-react';
+import { ArrowRight, BriefcaseBusiness, Car, ChevronRight, GraduationCap, HeartPulse, Landmark, MonitorCog, ShoppingBag, ShoppingCart, Store, Truck } from 'lucide-react';
 import { siteData } from '@/data/siteData';
-import { SectionIntro } from './primitives';
 
-export function Expertise() {
-  const [selectedIdx, setSelectedIdx] = useState(() => (
-    typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches ? null : 0
-  ));
-  const selected = selectedIdx !== null ? siteData.expertise[selectedIdx] : null;
-  const scrollToContact = () => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+const expertiseIcons = {
+  Retail: ShoppingBag,
+  FMCG: ShoppingCart,
+  BFSI: Landmark,
+  'Healthcare & Pharma': HeartPulse,
+  'Education & EdTech': GraduationCap,
+  'Logistics & Supply Chain': Truck,
+  Automobile: Car,
+  'E-Commerce & Startup': Store,
+  'Information Technology': MonitorCog,
+};
+const industryOrder = [
+  'Retail',
+  'FMCG',
+  'BFSI',
+  'Healthcare & Pharma',
+  'Education & EdTech',
+  'Logistics & Supply Chain',
+  'Automobile',
+  'E-Commerce & Startup',
+  'Information Technology',
+];
+const orderedExpertise = industryOrder
+  .map((name) => siteData.expertise.find((industry) => industry.name === name))
+  .filter(Boolean);
+
+export function Expertise({ compact = false, onNavigate }) {
+  const [activeIndustry, setActiveIndustry] = useState(compact ? null : 2);
+
+  if (compact) {
+    const selectedIndustry = activeIndustry === null ? null : orderedExpertise[activeIndustry];
+    const selectedDetail = selectedIndustry;
+
+    return (
+      <section className="section industries-showcase industries-home" aria-labelledby="industries-heading">
+        <div className="container">
+          <div className="industries-heading" id="industries-heading">
+            <span className="eyebrow"><i className="eyebrow-line" />Industries We Serve</span>
+          </div>
+          <div className="industries-rail">
+            {orderedExpertise.map((industry, index) => {
+              const Icon = expertiseIcons[industry.name];
+              return (
+                <button
+                  className={`industry-item ${activeIndustry === index ? 'is-active' : ''}`}
+                  key={industry.name}
+                  type="button"
+                  aria-expanded={activeIndustry === index}
+                  aria-controls="home-industry-detail"
+                  onClick={() => setActiveIndustry(activeIndustry === index ? null : index)}
+                >
+                  <span className="industry-item-icon"><Icon size={28} strokeWidth={1.55} /></span>
+                  <span className="industry-item-title">{industry.name}</span>
+                </button>
+              );
+            })}
+          </div>
+          {selectedIndustry && selectedDetail && (
+            <article className="industry-home-detail" id="home-industry-detail" aria-live="polite">
+              <div className="industry-home-detail-copy">
+                <span className="industry-home-detail-label">{selectedIndustry.name}</span>
+                <p>{selectedDetail.description}</p>
+              </div>
+              <div className="industry-home-focus">
+                <strong>Key hiring areas</strong>
+                <div>
+                  {selectedDetail.domains.map((domain) => <span key={domain}>{domain}</span>)}
+                </div>
+              </div>
+              <div className="industry-home-levels">
+                <strong>Hiring levels</strong>
+                <div>
+                  {selectedDetail.levels.map((level) => <span key={level}>{level}</span>)}
+                </div>
+              </div>
+            </article>
+          )}
+        </div>
+      </section>
+    );
+  }
+
+  const selected = orderedExpertise[activeIndustry];
 
   return (
-    <section id="expertise" className="section expertise">
+    <section className="section industries-showcase industries-page" aria-labelledby="industry-expertise-heading">
       <div className="container">
-        <SectionIntro
-          eyebrow="Industry Expertise"
-          title={<>Industry-focused <span className="title-accent">recruitment expertise.</span></>}
-          body="Our domain-focused approach enables us to identify and deliver the right talent, aligned with your business objectives, culture, and long-term growth."
-        />
+        <div className="industry-page-intro">
+          <span className="eyebrow"><i className="eyebrow-line" />Industry Expertise</span>
+          <h1 id="industry-expertise-heading">Industry-focused <span className="title-accent">recruitment expertise.</span></h1>
+          <p>Our domain-focused approach enables us to identify and deliver the right talent, aligned with your business objectives, culture, and long-term growth.</p>
+        </div>
 
-        <div className="expertise-master-detail">
-          <nav className="expertise-nav" aria-label="Industries we serve">
-            {siteData.expertise.map((item, i) => (
-              <button
-                className={`expertise-trigger ${selectedIdx === i ? 'is-selected' : ''}`}
-                key={item.name}
-                onClick={() => setSelectedIdx(i)}
-                aria-current={selectedIdx === i ? 'true' : undefined}
-              >
-                <span className="exp-num">{String(i + 1).padStart(2, '0')}</span>
-                <span className="exp-name">{item.name}</span>
-                <ChevronRight className="exp-chevron" size={17} />
-              </button>
-            ))}
-          </nav>
+        <div className="industry-expertise-panel">
+          <div className="industry-expertise-nav" role="tablist" aria-label="Select an industry">
+            {orderedExpertise.map((industry, index) => {
+              const IndustryIcon = expertiseIcons[industry.name];
+              return (
+                <button
+                  key={industry.name}
+                  type="button"
+                  role="tab"
+                  aria-selected={activeIndustry === index}
+                  aria-controls="industry-expertise-detail"
+                  className={activeIndustry === index ? 'is-active' : ''}
+                  onClick={() => setActiveIndustry(index)}
+                >
+                  <span className="industry-expertise-icon" aria-hidden="true"><IndustryIcon size={18} strokeWidth={1.7} /></span>
+                  <strong>{industry.name}</strong>
+                  <ChevronRight size={18} strokeWidth={1.8} />
+                </button>
+              );
+            })}
+          </div>
 
-          <motion.article
-            className="expertise-detail"
-            key={selected ? selected.name : 'empty'}
-            initial={{ opacity: 0, y: 5 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.2 }}
-          >
-            {selected ? (
-            <div className="detail-inner">
-              <div className="detail-top">
-                <div className="detail-top-left">
-                  <span className="detail-eyebrow"><Briefcase size={13} />{selected.name}</span>
-                  <p className="detail-desc">{selected.description}</p>
-                </div>
-                <div className="detail-action">
-                  <span>Looking for talent in this industry?</span>
-                  <button className="text-link detail-cta-btn" onClick={scrollToContact}>Discuss Your Hiring Needs <ArrowRight size={14} /></button>
-                </div>
+          <article className="industry-expertise-detail" id="industry-expertise-detail" role="tabpanel">
+            <div className="industry-detail-head">
+              <div className="industry-detail-summary">
+                <span className="industry-detail-label"><BriefcaseBusiness size={15} strokeWidth={1.8} />{selected.name}</span>
+                <p>{selected.description}</p>
               </div>
-              <div className="detail-columns">
-                <div className="detail-col">
-                  <h4 className="detail-label">Domains / Functions</h4>
-                  <div className="detail-pills">{selected.domains.map((domain) => <span className="domain-pill" key={domain}>{domain}</span>)}</div>
-                </div>
-                <div className="detail-col">
-                  <h4 className="detail-label">Hiring Levels</h4>
-                  <div className="detail-levels">{selected.levels.map((level, i) => <div className="level-item" key={level}><span className="level-node" /><span className="level-text">{level}</span>{i < selected.levels.length - 1 && <span className="level-connector" />}</div>)}</div>
-                </div>
+              <div className="industry-detail-cta">
+                <span>Looking for talent in this industry?</span>
+                <button type="button" className="text-link" onClick={() => onNavigate?.('/contact')}>
+                  Discuss Your Hiring Needs <ArrowRight size={15} />
+                </button>
               </div>
             </div>
-            ) : (
-              <div className="detail-empty">
-                <Briefcase size={20} strokeWidth={1.6} />
-                <p>Tap an industry above to see roles, functions and hiring levels.</p>
+
+            <div className="industry-detail-columns">
+              <div className="industry-domains">
+                <h2>Domains / Functions</h2>
+                <div className="industry-domain-tags">
+                  {selected.domains.map((domain) => <span key={domain}>{domain}</span>)}
+                </div>
               </div>
-            )}
-          </motion.article>
+              <div className="industry-levels">
+                <h2>Hiring Levels</h2>
+                <ul>
+                  {selected.levels.map((level) => <li key={level}>{level}</li>)}
+                </ul>
+              </div>
+            </div>
+          </article>
         </div>
       </div>
     </section>
