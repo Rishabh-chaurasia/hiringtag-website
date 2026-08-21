@@ -509,10 +509,11 @@ h1, h2, h3, h4 {
 .industries-heading { margin-bottom: 24px; }
 .industries-heading h1 { margin-top: 10px; font-size: clamp(2rem, 3vw, 2.75rem); font-weight: 800; line-height: 1.1; }
 .industries-rail { display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); overflow: hidden; border: 1px solid var(--line); background: var(--white); }
-.industry-item { width: 100%; min-width: 0; min-height: 122px; display: grid; place-content: center; justify-items: center; gap: 13px; padding: 18px 10px; border-right: 1px solid var(--line); text-align: center; transition: color 200ms ease, background-color 200ms ease, box-shadow 200ms ease; }
+.industry-item { width: 100%; min-width: 0; min-height: 148px; display: grid; grid-template-rows: 48px minmax(34px, auto); align-content: center; justify-items: center; gap: 14px; padding: 22px 8px; border-right: 1px solid var(--line); text-align: center; transition: color 200ms ease, background-color 200ms ease, box-shadow 200ms ease; }
 .industry-item:last-child { border-right: 0; }
-.industry-item-icon { color: var(--blue); transition: color 200ms ease, transform 200ms ease; }
-.industry-item-title { color: var(--navy); font: 700 0.75rem/1.4 'Manrope', sans-serif; letter-spacing: -0.015em; }
+.industry-item-icon { width: 48px; height: 48px; display: grid; place-items: center; color: var(--blue); transition: color 200ms ease, transform 200ms ease; }
+.industry-item-icon svg { width: 36px; height: 36px; }
+.industry-item-title { min-height: 34px; display: grid; place-items: center; color: var(--navy); font: 700 0.75rem/1.4 'Manrope', sans-serif; letter-spacing: -0.015em; }
 .industry-item:hover { position: relative; z-index: 1; background: var(--blue-soft); box-shadow: inset 0 -3px 0 var(--blue); }
 .industry-item:hover .industry-item-icon { color: var(--blue-dark); transform: translateY(-2px); }
 .industry-item.is-active { position: relative; z-index: 1; background: var(--blue-soft); box-shadow: inset 0 -3px 0 var(--blue); }
@@ -675,8 +676,17 @@ h1, h2, h3, h4 {
   border: 1px solid #d7e1ee;
   border-radius: 8px;
   background: var(--white);
+  transition: transform 200ms ease, border-color 200ms ease, box-shadow 200ms ease, background-color 200ms ease;
 }
-.process-card-number { color: var(--blue); font: 700 1.35rem/1.3 'Manrope', sans-serif; letter-spacing: -0.03em; }
+.process-card:nth-child(1) { --process-accent: #0b55e8; --process-tint: #edf4ff; --process-shadow: rgba(11, 85, 232, 0.16); }
+.process-card:nth-child(2) { --process-accent: #e34d5f; --process-tint: #fff1f3; --process-shadow: rgba(227, 77, 95, 0.15); }
+.process-card:nth-child(3) { --process-accent: #238b55; --process-tint: #eef9f2; --process-shadow: rgba(35, 139, 85, 0.15); }
+.process-card:nth-child(4) { --process-accent: #7b52cf; --process-tint: #f5f0ff; --process-shadow: rgba(123, 82, 207, 0.15); }
+.process-card:nth-child(5) { --process-accent: #dc8119; --process-tint: #fff6e9; --process-shadow: rgba(220, 129, 25, 0.15); }
+.process-card:nth-child(6) { --process-accent: #098b99; --process-tint: #ebfafb; --process-shadow: rgba(9, 139, 153, 0.15); }
+.process-card:hover { transform: translateY(-4px); border-color: var(--process-accent); background: var(--process-tint); box-shadow: 0 18px 34px var(--process-shadow); }
+.process-card-number { color: var(--blue); font: 700 1.35rem/1.3 'Manrope', sans-serif; letter-spacing: -0.03em; transition: color 200ms ease; }
+.process-card:hover .process-card-number, .process-card:hover .process-card-content h3 { color: var(--process-accent); }
 .process-card-content h3 { margin: 1px 0 9px; font-size: 0.88rem; font-weight: 700; line-height: 1.4; letter-spacing: -0.02em; }
 .process-card-content p { margin: 0; color: #58708f; font-size: 0.8rem; line-height: 1.62; }
 .process-closing { max-width: 800px; margin: 30px auto 0; padding-top: 22px; border-top: 1px solid var(--line); text-align: center; }
@@ -1109,7 +1119,9 @@ input:focus, select:focus, textarea:focus { border-color: var(--blue); box-shado
   .hero-copy h1 { font-size: 2.15rem; }
   .eyebrow { font-size: 0.62rem; letter-spacing: 0.13em; }
   .cred-item { font-size: 0.67rem; }
-  .industry-item { min-height: 112px; padding-inline: 8px; }
+  .industry-item { min-height: 132px; padding-inline: 8px; }
+  .industry-item-icon { width: 42px; height: 42px; }
+  .industry-item-icon svg { width: 32px; height: 32px; }
   .contact-form-wrap { padding: 18px; }
 }
 

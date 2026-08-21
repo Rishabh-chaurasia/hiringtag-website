@@ -53,7 +53,7 @@ export function Expertise({ compact = false, onNavigate }) {
                   aria-controls="home-industry-detail"
                   onClick={() => setActiveIndustry(activeIndustry === index ? null : index)}
                 >
-                  <span className="industry-item-icon"><Icon size={28} strokeWidth={1.55} /></span>
+                  <span className="industry-item-icon"><Icon size={36} strokeWidth={1.55} /></span>
                   <span className="industry-item-title">{industry.name}</span>
                 </button>
               );
