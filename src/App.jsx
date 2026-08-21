@@ -10,6 +10,7 @@ import { ExpertisePage } from '@/pages/ExpertisePage';
 import { ProcessPage } from '@/pages/ProcessPage';
 import { ContactPage } from '@/pages/ContactPage';
 import { CSRPage } from '@/pages/CSRPage';
+import { SEO } from '@/components/SEO';
 
 const routeComponents = {
   '/': HomePage,
@@ -58,6 +59,7 @@ export function App() {
 
   return (
     <div className="site">
+      <SEO pathname={pathname} />
       <Navbar pathname={pathname} onNavigate={navigate} />
       <main className={pathname === '/' ? 'home-page' : 'inner-page'} key={pathname}>
         <Page onNavigate={navigate} onJoin={() => setJoinOpen(true)} />
