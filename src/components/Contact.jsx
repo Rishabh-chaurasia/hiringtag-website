@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowRight, Briefcase, Check, FileText, Linkedin, Mail, MapPin, MessageCircle, Phone, PhoneCall, Send, User } from 'lucide-react';
+import { ArrowRight, Briefcase, Check, Linkedin, Mail, MapPin, MessageCircle, Phone, PhoneCall, Send, User } from 'lucide-react';
 import { siteData } from '@/data/siteData';
 import { Reveal, SectionIntro } from './primitives';
 
@@ -115,15 +115,23 @@ export function Contact() {
 
               <label>Message<textarea name="message" required rows={3} placeholder="Tell us how we can help..." /></label>
 
-              {audience === 'candidate' && <label className="file-input">
-                <FileText size={16} />
-                <span>Attach your CV / resume (PDF or Word) — please attach it manually in the email that opens</span>
-                <input name="resume" type="file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
-              </label>}
-
-              <button className="btn btn-primary form-submit" type="submit">
-                Send Message <Send size={15} />
-              </button>
+              {audience === 'candidate' ? (
+                <div className="candidate-upload-actions">
+                  <div className="candidate-upload-field">
+                    <span>Attach your CV / Resume (PDF / Word)</span>
+                    <label className="file-input">
+                      <input name="resume" type="file" aria-label="Attach your CV or resume" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+                    </label>
+                  </div>
+                  <button className="btn btn-primary form-submit" type="submit">
+                    Send Message <Send size={15} />
+                  </button>
+                </div>
+              ) : (
+                <button className="btn btn-primary form-submit" type="submit">
+                  Send Message <Send size={15} />
+                </button>
+              )}
             </form>
           )}
         </Reveal>

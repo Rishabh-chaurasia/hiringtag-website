@@ -97,8 +97,10 @@ export function Services({ page = false }) {
             return (
               <article className="service-focus-card" key={service.title}>
                 <span className="service-focus-icon"><Icon size={21} strokeWidth={1.7} /></span>
-                <h3>{service.title}</h3>
-                <p>{service.desc}</p>
+                <div className="service-focus-copy">
+                  <h3>{service.title}</h3>
+                  <p>{service.desc}</p>
+                </div>
               </article>
             );
           })}

@@ -7,6 +7,11 @@ function CSRReference({ page, onContact }) {
   return (
       <section className={`section csr csr-page ${page ? '' : 'csr-home-reference'}`} aria-labelledby="csr-heading">
         <div className="container csr-page-container">
+          {!page && (
+            <div className="csr-home-heading">
+              <span className="eyebrow"><span className="eyebrow-line" />CSR at Hiring Tag</span>
+            </div>
+          )}
           <div className="csr-page-main">
             <div className="csr-page-visual">
               <span className="csr-page-outline" aria-hidden="true" />
@@ -24,7 +29,10 @@ function CSRReference({ page, onContact }) {
               <Heading id="csr-heading">10 Trees for Every Hiring.<Leaf aria-hidden="true" /></Heading>
               <p className="csr-page-lead">Every successful placement should create more than a career—it should help create a greener future.</p>
               <p>For every successful placement, Hiring Tag plants 10 trees in the name of the client organization and the selected candidate, with care and maintenance supported in the candidate’s region.</p>
-              <button className="btn btn-primary" onClick={onContact}>Grow With Us <ArrowRight size={18} /></button>
+              <div className="csr-page-actions">
+                <button className="btn btn-primary" onClick={onContact}>Grow With Us <ArrowRight size={18} /></button>
+                {!page && <p className="csr-home-inline-closing"><Leaf size={20} aria-hidden="true" />Creating careers while contributing to a greener tomorrow.<Leaf size={20} aria-hidden="true" /></p>}
+              </div>
             </div>
           </div>
           <div className="csr-page-journey" aria-label="CSR initiative journey">
@@ -43,7 +51,7 @@ function CSRReference({ page, onContact }) {
               <strong>Care &amp;<br />Maintenance</strong>
             </div>
           </div>
-          <p className="csr-page-closing"><Leaf size={25} aria-hidden="true" />Creating careers while contributing to a greener tomorrow.<Leaf size={25} aria-hidden="true" /></p>
+          {page && <p className="csr-page-closing"><Leaf size={25} aria-hidden="true" />Creating careers while contributing to a greener tomorrow.<Leaf size={25} aria-hidden="true" /></p>}
         </div>
       </section>
   );
