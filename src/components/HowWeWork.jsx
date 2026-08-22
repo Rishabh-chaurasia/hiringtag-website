@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowRight, Briefcase, Plus, User } from 'lucide-react';
+import { ArrowRight, Briefcase, CalendarCheck, ClipboardCheck, Handshake, HeartHandshake, Plus, Search, User, UserCheck } from 'lucide-react';
 import { siteData } from '@/data/siteData';
 import { SectionIntro } from './primitives';
 
@@ -11,6 +11,8 @@ const employerSteps = [
   { title: 'Offer Management & Onboarding', desc: 'From offer negotiation to onboarding support, we ensure a smooth hiring experience and successful joining.' },
   { title: 'Long-Term Partnership', desc: 'We stay connected beyond the placement to support workforce continuity, future hiring needs and long-term talent success.' },
 ];
+
+const processIcons = [ClipboardCheck, Search, UserCheck, CalendarCheck, Handshake, HeartHandshake];
 
 export function HowWeWork({ onJoin }) {
   const [tab, setTab] = useState('employer');
@@ -42,24 +44,34 @@ export function HowWeWork({ onJoin }) {
         <div className="process-desktop">
           <div className={`process-card-grid ${!isEmployer ? 'is-candidate' : ''}`}>
             {steps.map((step, index) => (
-              <article className="process-card" key={step.title}>
-                <span className="process-card-number">{String(index + 1).padStart(2, '0')}</span>
-                <div className="process-card-content"><h3>{step.title}</h3><p>{step.desc}</p></div>
-              </article>
+              (() => {
+                const Icon = processIcons[index % processIcons.length];
+                return (
+                  <article className="process-card" key={step.title}>
+                    <span className="process-card-icon" aria-hidden="true"><Icon size={20} strokeWidth={1.8} /></span>
+                    <div className="process-card-content"><h3>{step.title}</h3><p>{step.desc}</p></div>
+                  </article>
+                );
+              })()
             ))}
           </div>
         </div>
 
         <div className="process-mobile">
           {steps.map((step, index) => (
-            <div className={`process-mobile-item ${openStep === index ? 'is-open' : ''}`} key={step.title}>
-              <button className="process-mobile-head" onClick={() => setOpenStep(openStep === index ? null : index)}>
-                <span className="pmh-marker">{String(index + 1).padStart(2, '0')}</span>
-                <span className="pmh-title">{step.title}</span>
-                <span className="pmh-toggle"><Plus size={16} /></span>
-              </button>
-              {openStep === index && <div className="process-mobile-body"><p>{step.desc}</p></div>}
-            </div>
+            (() => {
+              const Icon = processIcons[index % processIcons.length];
+              return (
+                <div className={`process-mobile-item ${openStep === index ? 'is-open' : ''}`} key={step.title}>
+                  <button className="process-mobile-head" onClick={() => setOpenStep(openStep === index ? null : index)}>
+                    <span className="pmh-marker" aria-hidden="true"><Icon size={17} strokeWidth={1.9} /></span>
+                    <span className="pmh-title">{step.title}</span>
+                    <span className="pmh-toggle"><Plus size={16} /></span>
+                  </button>
+                  {openStep === index && <div className="process-mobile-body"><p>{step.desc}</p></div>}
+                </div>
+              );
+            })()
           ))}
         </div>
 

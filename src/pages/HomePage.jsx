@@ -14,7 +14,7 @@ export function HomePage({ onNavigate, onJoin }) {
       <Services />
       <Expertise compact />
       <HowWeWork onJoin={onJoin} />
-      <CSR />
+      <CSR onContact={() => onNavigate('/contact')} />
       <FinalCTA onContact={() => onNavigate('/contact')} />
     </>
   );

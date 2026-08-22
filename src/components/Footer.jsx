@@ -1,4 +1,4 @@
-import { Globe2, Linkedin, Mail, MapPin, MessageCircle, Phone, Sprout, UsersRound } from 'lucide-react';
+import { Globe2, Linkedin, Mail, MapPin, MessageCircle, Phone, Sprout } from 'lucide-react';
 import { siteData } from '@/data/siteData';
 import { Logo } from './Logo';
 
@@ -29,7 +29,7 @@ export function Footer({ onNavigate }) {
   };
 
   return (
-    <footer className="footer">
+    <footer id="site-footer" className="footer">
       <div className="container footer-grid">
         <div className="footer-brand">
           <div className="footer-logo"><Logo /></div>
@@ -47,15 +47,14 @@ export function Footer({ onNavigate }) {
         </nav>
         <div className="footer-col footer-services">
           <h4>Our Services</h4>
-          {footerServices.map((service) => <span className="footer-service" key={service}>{service}</span>)}
+          {footerServices.map((service) => <a className="footer-service" key={service} href="/services" onClick={(event) => go(event, '/services')}>{service}</a>)}
         </div>
         <div className="footer-col footer-connect">
           <h4>Contact Us</h4>
           <a href={`tel:${siteData.company.phone}`}><Phone size={22} />{siteData.company.phone}</a>
           <a href={`mailto:${siteData.company.email}`}><Mail size={22} />{siteData.company.email}</a>
           <a href="https://www.hiringtag.com" target="_blank" rel="noreferrer"><Globe2 size={22} />www.hiringtag.com</a>
-          <span className="footer-address"><MapPin size={22} />Gurugram, Haryana</span>
-          <span className="footer-address"><UsersRound size={22} />Serving clients across India.</span>
+          <span className="footer-address"><MapPin size={22} />{siteData.company.address}</span>
         </div>
       </div>
       <div className="container footer-csr-banner">

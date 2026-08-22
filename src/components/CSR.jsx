@@ -1,11 +1,11 @@
-import { ArrowRight, HandHeart, Leaf, MapPin, Sprout, UserRoundCheck } from 'lucide-react';
+import { ArrowRight, HandHeart, Leaf, Sprout, UserRoundCheck } from 'lucide-react';
 import { imagery } from '@/data/siteData';
-import { Reveal } from './primitives';
 
-export function CSR({ page = false, onContact }) {
-  if (page) {
-    return (
-      <section className="section csr csr-page" aria-labelledby="csr-heading">
+function CSRReference({ page, onContact }) {
+  const Heading = page ? 'h1' : 'h2';
+
+  return (
+      <section className={`section csr csr-page ${page ? '' : 'csr-home-reference'}`} aria-labelledby="csr-heading">
         <div className="container csr-page-container">
           <div className="csr-page-main">
             <div className="csr-page-visual">
@@ -21,7 +21,7 @@ export function CSR({ page = false, onContact }) {
             </div>
             <div className="csr-page-copy">
               <span className="eyebrow">CSR Initiative</span>
-              <h1 id="csr-heading">10 Trees for Every Hiring.<Leaf aria-hidden="true" /></h1>
+              <Heading id="csr-heading">10 Trees for Every Hiring.<Leaf aria-hidden="true" /></Heading>
               <p className="csr-page-lead">Every successful placement should create more than a career—it should help create a greener future.</p>
               <p>For every successful placement, Hiring Tag plants 10 trees in the name of the client organization and the selected candidate, with care and maintenance supported in the candidate’s region.</p>
               <button className="btn btn-primary" onClick={onContact}>Grow With Us <ArrowRight size={18} /></button>
@@ -46,25 +46,9 @@ export function CSR({ page = false, onContact }) {
           <p className="csr-page-closing"><Leaf size={25} aria-hidden="true" />Creating careers while contributing to a greener tomorrow.<Leaf size={25} aria-hidden="true" /></p>
         </div>
       </section>
-    );
-  }
-
-  return (
-    <section className="section csr">
-      <div className="container csr-grid">
-        <Reveal className="csr-image-wrap"><img src={imagery.csr} alt="Volunteers planting a young tree" /></Reveal>
-        <Reveal className="csr-copy" delay={0.1}>
-          <span className="eyebrow"><i className="eyebrow-line" />Our CSR Initiative</span>
-          <h2>10 Trees for Every <span>Hiring</span></h2>
-          <p className="csr-lead">Every Hiring Matters. Every Hiring Grows.</p>
-          <p>For every successful placement, we support the planting of 10 trees in the name of the hiring company and candidate, with care for a greener future.</p>
-          <div className="csr-points">
-            <span><Sprout size={18} />10 trees per successful hiring</span>
-            <span><MapPin size={18} />Planting with local impact in mind</span>
-            <span><Leaf size={18} />Long-term care and maintenance</span>
-          </div>
-        </Reveal>
-      </div>
-    </section>
   );
+}
+
+export function CSR({ page = false, onContact }) {
+  return <CSRReference page={page} onContact={onContact} />;
 }

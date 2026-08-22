@@ -166,7 +166,7 @@ export const siteData = {
 };
 
 export const imagery = {
-  hero: '/hero-recruitment-v5.png',
+  hero: '/hero-reference-consultants.png',
   about: '/about-partnership-v3.webp',
   story: 'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&h=900&w=1400',
   csr: '/csr-initiative-v2.png',

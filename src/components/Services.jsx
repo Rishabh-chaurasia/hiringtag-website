@@ -1,5 +1,4 @@
 import {
-  ArrowRight,
   BriefcaseBusiness,
   CalendarClock,
   GraduationCap,
@@ -75,7 +74,6 @@ export function Services({ page = false }) {
                     <h3>{service.title}</h3>
                     <p>{service.desc}</p>
                   </div>
-                  <ArrowRight className="services-page-arrow" size={30} strokeWidth={1.7} aria-hidden="true" />
                 </article>
               );
             })}

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowRight, Briefcase, Check, FileText, Linkedin, Mail, MapPin, MessageCircle, Phone, Send, User } from 'lucide-react';
+import { ArrowRight, Briefcase, Check, FileText, Linkedin, Mail, MapPin, MessageCircle, Phone, PhoneCall, Send, User } from 'lucide-react';
 import { siteData } from '@/data/siteData';
 import { Reveal, SectionIntro } from './primitives';
 
@@ -64,17 +64,17 @@ export function Contact() {
             {details.map((d) => (
               <a className="contact-detail" key={d.label} href={d.href || '#'} onClick={(e) => !d.href && e.preventDefault()}>
                 <span className="cd-icon">{d.icon}</span>
-                <div><small>{d.label}</small><strong>{d.value}</strong></div>
+                <strong>{d.value}</strong>
               </a>
             ))}
-            <a className="contact-detail" href={`https://wa.me/${siteData.company.whatsapp}`} target="_blank" rel="noopener noreferrer">
-              <span className="cd-icon cd-whatsapp"><MessageCircle size={15} /></span>
-              <div><small>WhatsApp</small><strong>Message us</strong></div>
-            </a>
-            <a className="contact-detail" href="https://www.linkedin.com/company/hiring-tag-india/posts/?feedView=all" target="_blank" rel="noopener noreferrer">
-              <span className="cd-icon cd-linkedin"><Linkedin size={15} /></span>
-              <div><small>LinkedIn</small><strong>Follow us</strong></div>
-            </a>
+            <div className="contact-social-links" aria-label="Hiring Tag social links">
+              <a className="contact-social-link is-whatsapp" href={`https://wa.me/${siteData.company.whatsapp}`} target="_blank" rel="noopener noreferrer" aria-label="Contact Hiring Tag on WhatsApp">
+                <MessageCircle size={22} strokeWidth={2} /><PhoneCall size={10} strokeWidth={2.6} />
+              </a>
+              <a className="contact-social-link is-linkedin" href="https://www.linkedin.com/company/hiring-tag-india/posts/?feedView=all" target="_blank" rel="noopener noreferrer" aria-label="Follow Hiring Tag on LinkedIn">
+                <Linkedin size={22} strokeWidth={2} />
+              </a>
+            </div>
           </Reveal>
         </div>
 

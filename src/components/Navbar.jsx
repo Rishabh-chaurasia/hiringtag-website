@@ -29,6 +29,12 @@ export function Navbar({ pathname, onNavigate }) {
     setOpen(false);
   };
 
+  const goToFooter = (event) => {
+    event.preventDefault();
+    document.getElementById('site-footer')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setOpen(false);
+  };
+
   return (
     <>
       <header className={`navbar ${scrolled ? 'is-scrolled' : ''}`}>
@@ -40,7 +46,7 @@ export function Navbar({ pathname, onNavigate }) {
             ))}
           </nav>
           <div className="nav-right">
-            <a className="nav-cta" href="/contact" onClick={(event) => go(event, '/contact')}>
+            <a className="nav-cta" href="#site-footer" onClick={goToFooter}>
               Get in Touch <ArrowRight size={15} />
             </a>
             <button className="nav-burger" onClick={() => setOpen(true)} aria-label="Open menu"><Menu /></button>
@@ -59,7 +65,7 @@ export function Navbar({ pathname, onNavigate }) {
               <a key={path} href={path} className={pathname === path ? 'is-active' : ''} aria-current={pathname === path ? 'page' : undefined} onClick={(event) => go(event, path)}>{label}<ArrowRight size={16} /></a>
             ))}
           </nav>
-          <a className="nav-cta mobile-join" href="/contact" onClick={(event) => go(event, '/contact')}>
+          <a className="nav-cta mobile-join" href="#site-footer" onClick={goToFooter}>
             Get in Touch <ArrowRight size={15} />
           </a>
         </div>

@@ -150,7 +150,7 @@ export function Expertise({ compact = false, onNavigate }) {
           ) : (
             <section className="industry-expertise-empty" id="industry-expertise-detail" role="tabpanel" aria-label="Industry expertise introduction">
               <div className="industry-empty-images" aria-hidden="true">
-                <img className="industry-empty-image-main" src="/industry-expertise-intro-v2.png" alt="" />
+                <img className="industry-empty-image-main" src="/expertise-recruitment-desk.webp" alt="" />
               </div>
             </section>
           )}
