@@ -57,7 +57,7 @@ export function Services({ page = false }) {
         <span className="services-page-dots" aria-hidden="true" />
         <div className="container services-page-container">
           <SectionIntro
-            eyebrow="Our Services"
+            eyebrow="What We Do"
             align="center"
             title={<span id="services-heading">Hiring solutions designed around your business.</span>}
             body="From focused searches to workforce-scale recruitment, we provide flexible support across every stage of hiring."
