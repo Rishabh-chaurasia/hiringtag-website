@@ -37,7 +37,7 @@ export function Footer({ onNavigate }) {
           <p className="footer-brand-tagline">Elevating Recruitment Excellence.</p>
           <p className="footer-brand-copy">We connect businesses with the right talent through focused, flexible, and reliable hiring solutions.</p>
           <div className="footer-socials">
-            <a href={siteData.company.linkedin} aria-label="Hiring Tag on LinkedIn"><Linkedin size={25} /></a>
+            <a href={siteData.company.linkedin} target="_blank" rel="noopener noreferrer" aria-label="Hiring Tag on LinkedIn"><Linkedin size={25} /></a>
             <a href={`https://wa.me/${siteData.company.whatsapp}`} aria-label="Contact Hiring Tag on WhatsApp"><MessageCircle size={25} /></a>
           </div>
         </div>

@@ -8,7 +8,7 @@ export const siteData = {
     whatsapp: '919560374796',
     location: 'Gurugram, Haryana, India',
     address: 'Unitech Arcadia, South City II, Sector 49, Gurugram, Haryana, India',
-    linkedin: '#',
+    linkedin: 'https://www.linkedin.com/company/hiring-tag-india/posts/?feedView=all',
   },
   nav: [
     ['Home', '/'],
