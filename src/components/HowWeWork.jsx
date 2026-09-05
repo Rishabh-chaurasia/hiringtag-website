@@ -14,7 +14,7 @@ const employerSteps = [
 
 const processIcons = [ClipboardCheck, Search, UserCheck, CalendarCheck, Handshake, HeartHandshake];
 
-export function HowWeWork({ onJoin }) {
+export function HowWeWork({ onJoin, page = false }) {
   const [tab, setTab] = useState('employer');
   const [openStep, setOpenStep] = useState(null);
   const isEmployer = tab === 'employer';
@@ -29,6 +29,12 @@ export function HowWeWork({ onJoin }) {
     <section className="section process process-page" aria-labelledby="process-heading">
       <div className="container">
         <SectionIntro eyebrow="Our Approach" title={<span id="process-heading">A recruitment process built around <span className="title-accent">your business.</span></span>} />
+
+        {page && (
+          <figure className="ai-recruitment-banner">
+            <img src="/ai-enabled-recruitment.png" alt="AI-enabled recruitment with human-led hiring decisions" />
+          </figure>
+        )}
 
         <div className="process-segmented">
           <button className={`seg-btn ${isEmployer ? 'is-active' : ''}`} onClick={() => switchTab('employer')}><Briefcase size={14} />For Employers</button>

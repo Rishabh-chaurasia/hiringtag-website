@@ -88,8 +88,8 @@ export function Services({ page = false }) {
       <div className="container">
         <SectionIntro
           eyebrow="What We Do"
-          title={<span id="services-heading">Recruitment and consulting solutions built for <span className="title-accent">your business.</span></span>}
-          body="From high-volume workforce hiring to executive search, our services are designed to meet diverse talent acquisition needs across industries."
+          title={<span id="services-heading">AI-Enabled Recruitment and Talent Consulting Solutions Built for <span className="title-accent">Your Business</span></span>}
+          body="From high-volume workforce hiring to executive search, we combine AI-enabled sourcing and screening with human expertise to identify the right talent faster. Our customized solutions deliver greater efficiency, accuracy and role-fit across industries."
         />
         <div className="service-focus-grid">
           {siteData.focusAreas.map((service) => {
