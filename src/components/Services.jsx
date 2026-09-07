@@ -88,8 +88,8 @@ export function Services({ page = false }) {
       <div className="container">
         <SectionIntro
           eyebrow="What We Do"
-          title={<span id="services-heading">AI-Enabled Recruitment and Talent Consulting Solutions Built for <span className="title-accent">Your Business</span></span>}
-          body="From high-volume workforce hiring to executive search, we combine AI-enabled sourcing and screening with human expertise to identify the right talent faster. Our customized solutions deliver greater efficiency, accuracy and role-fit across industries."
+          title={<span id="services-heading">AI + <span className="title-accent">Human Expertise</span></span>}
+          body={<><span className="services-home-tagline">Technology for speed. Human expertise for the right fit.</span><span>Hiring Tag combines AI-assisted sourcing and screening efficiency with experienced recruiter judgement at every decision point.</span></>}
         />
         <div className="service-focus-grid">
           {siteData.focusAreas.map((service) => {
