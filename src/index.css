@@ -788,13 +788,9 @@ input:focus, select:focus, textarea:focus { border-color: var(--blue); box-shado
 .file-input { padding: 12px; border: 1px dashed #b8c8db; border-radius: 8px; color: var(--muted); }
 .file-input span { font-size: 0.74rem; font-weight: 500; line-height: 1.5; }
 .file-input input { min-height: 0; padding: 8px; background: transparent; font-size: 0.72rem; }
-.candidate-upload-actions { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px; }
-.candidate-upload-field { min-width: 0; display: grid; gap: 5px; }
-.candidate-upload-field > span { color: var(--navy); font: 700 0.68rem/1.3 'Manrope', sans-serif; }
-.candidate-upload-actions .file-input { width: 230px; display: block; padding: 7px 9px; }
-.candidate-upload-actions .file-input input { width: 100%; padding: 0; font-size: 0.63rem; }
-.candidate-upload-actions .form-submit { flex: 0 0 auto; }
 .form-submit { justify-self: start; }
+.form-submit:disabled { cursor: wait; opacity: 0.72; }
+.form-error { margin: 2px 0 0; color: #b42318; font-size: 0.78rem; line-height: 1.45; }
 .form-success { min-height: 260px; display: grid; place-content: center; justify-items: start; gap: 10px; }
 .success-icon { width: 48px; height: 48px; display: grid; place-items: center; border-radius: 50%; background: var(--blue-soft); color: var(--blue); }
 

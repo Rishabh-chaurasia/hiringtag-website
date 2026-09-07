@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import { ArrowRight, Briefcase, Check, Linkedin, Mail, MapPin, MessageCircle, Phone, PhoneCall, Send, User } from 'lucide-react';
 import { siteData } from '@/data/siteData';
 import { Reveal, SectionIntro } from './primitives';
@@ -6,25 +7,38 @@ import { Reveal, SectionIntro } from './primitives';
 export function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [audience, setAudience] = useState('employer');
+  const [isSending, setIsSending] = useState(false);
+  const [submissionError, setSubmissionError] = useState('');
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     const data = new FormData(e.target);
-    const lines = [
-      `Name: ${data.get('name') || ''}`,
-      audience === 'employer' ? `Company: ${data.get('company') || ''}` : `Current role / experience: ${data.get('roleExperience') || ''}`,
-      `Email: ${data.get('email') || ''}`,
-      `Phone: ${data.get('phone') || ''}`,
-      `I am: ${audience === 'employer' ? 'Employer' : 'Candidate'}`,
-      `${audience === 'employer' ? 'Hiring Requirement' : 'Subject'}: ${data.get('requirement') || ''}`,
-      '',
-      'Message:',
-      data.get('message') || '',
-    ];
-    const subject = encodeURIComponent(audience === 'employer' ? 'New Hiring Enquiry — Hiring Tag Website' : 'New Candidate Enquiry — Hiring Tag Website');
-    const body = encodeURIComponent(lines.join('\n'));
-    window.location.href = `mailto:${siteData.company.email}?subject=${subject}&body=${body}`;
-    setSubmitted(true);
+    setIsSending(true);
+    setSubmissionError('');
+
+    try {
+      await emailjs.send(
+        'service_iom90m1',
+        'template_ic75g5m',
+        {
+          name: data.get('name') || '',
+          company: data.get('company') || '',
+          roleExperience: data.get('roleExperience') || '',
+          email: data.get('email') || '',
+          phone: data.get('phone') || '',
+          audience: audience === 'employer' ? 'Employer' : 'Candidate',
+          requirement: data.get('requirement') || '',
+          message: data.get('message') || '',
+        },
+        { publicKey: 'difY6Qk-0gcNKuS1B' },
+      );
+      setSubmitted(true);
+    } catch (error) {
+      console.error('EmailJS submission failed:', error);
+      setSubmissionError('Your message could not be sent. Please try again or contact us directly by email.');
+    } finally {
+      setIsSending(false);
+    }
   };
 
   const details = [
@@ -103,7 +117,7 @@ export function Contact() {
               </div>
 
               <label>I am:
-                <select value={audience === 'employer' ? 'Employer' : 'Candidate'} onChange={(e) => setAudience(e.target.value === 'Candidate' ? 'candidate' : 'employer')}>
+                <select name="audience" value={audience === 'employer' ? 'Employer' : 'Candidate'} onChange={(e) => setAudience(e.target.value === 'Candidate' ? 'candidate' : 'employer')}>
                   <option>Employer</option>
                   <option>Candidate</option>
                 </select>
@@ -115,23 +129,10 @@ export function Contact() {
 
               <label>Message<textarea name="message" required rows={3} placeholder="Tell us how we can help..." /></label>
 
-              {audience === 'candidate' ? (
-                <div className="candidate-upload-actions">
-                  <div className="candidate-upload-field">
-                    <span>Attach your CV / Resume (PDF / Word)</span>
-                    <label className="file-input">
-                      <input name="resume" type="file" aria-label="Attach your CV or resume" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
-                    </label>
-                  </div>
-                  <button className="btn btn-primary form-submit" type="submit">
-                    Send Message <Send size={15} />
-                  </button>
-                </div>
-              ) : (
-                <button className="btn btn-primary form-submit" type="submit">
-                  Send Message <Send size={15} />
-                </button>
-              )}
+              {submissionError && <p className="form-error" role="alert">{submissionError}</p>}
+              <button className="btn btn-primary form-submit" type="submit" disabled={isSending}>
+                {isSending ? 'Sending...' : 'Send Message'} <Send size={15} />
+              </button>
             </form>
           )}
         </Reveal>
