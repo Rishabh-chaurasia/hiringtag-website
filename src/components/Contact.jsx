@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import emailjs from '@emailjs/browser';
-import { ArrowRight, Briefcase, Check, Linkedin, Mail, MapPin, MessageCircle, Phone, PhoneCall, Send, User } from 'lucide-react';
+import { ArrowRight, Briefcase, Check, Mail, MapPin, Phone, Send, User } from 'lucide-react';
 import { siteData } from '@/data/siteData';
 import { Reveal, SectionIntro } from './primitives';
 
@@ -83,10 +83,10 @@ export function Contact() {
             ))}
             <div className="contact-social-links" aria-label="Hiring Tag social links">
               <a className="contact-social-link is-whatsapp" href={`https://wa.me/${siteData.company.whatsapp}`} target="_blank" rel="noopener noreferrer" aria-label="Contact Hiring Tag on WhatsApp">
-                <MessageCircle size={22} strokeWidth={2} /><PhoneCall size={10} strokeWidth={2.6} />
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.64 15.03L2 22l5.12-1.32A10 10 0 1 0 12 2Zm0 18.18a8.14 8.14 0 0 1-4.15-1.13l-.3-.18-3.04.79.81-2.96-.2-.31A8.18 8.18 0 1 1 12 20.18Zm4.48-6.12c-.25-.13-1.48-.73-1.71-.81-.23-.08-.4-.13-.57.13-.17.25-.65.81-.8.98-.15.17-.3.19-.55.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.25-1.5-1.4-1.75-.15-.25-.02-.38.11-.51.11-.11.25-.3.38-.45.13-.15.17-.25.25-.42.08-.17.04-.32-.02-.45-.06-.13-.57-1.38-.78-1.89-.21-.5-.42-.43-.57-.44h-.49c-.17 0-.45.06-.68.32-.23.25-.89.87-.89 2.12s.91 2.46 1.04 2.63c.13.17 1.79 2.73 4.34 3.83.61.26 1.08.42 1.45.54.61.19 1.17.16 1.61.1.49-.07 1.48-.6 1.69-1.19.21-.59.21-1.1.15-1.2-.06-.11-.23-.17-.48-.3Z" /></svg>
               </a>
               <a className="contact-social-link is-linkedin" href="https://www.linkedin.com/company/hiring-tag-india/posts/?feedView=all" target="_blank" rel="noopener noreferrer" aria-label="Follow Hiring Tag on LinkedIn">
-                <Linkedin size={22} strokeWidth={2} />
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z" /></svg>
               </a>
             </div>
           </Reveal>
