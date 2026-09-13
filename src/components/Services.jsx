@@ -89,7 +89,7 @@ export function Services({ page = false }) {
         <SectionIntro
           eyebrow="What We Do"
           title={<span id="services-heading">AI + <span className="title-accent">Human Expertise</span></span>}
-          body={<><span className="services-home-tagline">Technology for speed. Human expertise for the right fit.</span><span>Hiring Tag combines AI-assisted sourcing and screening efficiency with experienced recruiter judgement at every decision point.</span></>}
+          body={<><span className="services-home-tagline">Technology for speed. Human expertise for the right fit.</span><span>Hiring Tag combines AI-assisted sourcing and screening efficiency with experienced recruiter judgement at every decision point. This balance helps us move faster without compromising on quality or role fit.</span></>}
         />
         <div className="service-focus-grid">
           {siteData.focusAreas.map((service) => {

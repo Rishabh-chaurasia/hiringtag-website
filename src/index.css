@@ -536,7 +536,7 @@ h1, h2, h3, h4 {
   min-height: 430px;
   overflow: hidden;
   border: 1px solid var(--line);
-  border-radius: 50%;
+  border-radius: 10px;
   background: var(--white);
 }
 .industry-expertise-nav { min-width: 0; border-right: 1px solid var(--line); background: #fbfcfe; }
