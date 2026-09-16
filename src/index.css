@@ -757,6 +757,13 @@ h1, h2, h3, h4 {
 .contact-social-link.is-whatsapp { background: #25d366; }
 .contact-social-link.is-linkedin { background: #0a66c2; }
 .contact-social-link svg { width: 22px; height: 22px; fill: currentColor; }
+.contact-social-link:hover svg, .footer-socials a:hover svg { animation: social-icon-spin 900ms linear infinite !important; transform-origin: center; will-change: transform; }
+
+@keyframes social-icon-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 .contact-form-wrap {
   padding: clamp(18px, 1.8vw, 24px);
   border: 1px solid var(--line);
@@ -1655,6 +1662,14 @@ input:focus, select:focus, textarea:focus { border-color: var(--blue); box-shado
   .footer-csr-divider { display: none; }
   .footer-csr-banner > span:last-child { width: 100%; padding-left: 50px; }
   .footer-bottom { align-items: center; flex-direction: column; gap: 6px; text-align: center; }
+}
+
+/* Keep the user-requested social logo rotation visible even when reduced motion is enabled. */
+@media (prefers-reduced-motion: reduce) {
+  .contact-social-link:hover svg, .footer-socials a:hover svg {
+    animation-duration: 900ms !important;
+    animation-iteration-count: infinite !important;
+  }
 }
 
 /* Expertise page initial image panel */
