@@ -413,7 +413,7 @@ h1, h2, h3, h4 {
 /* Services */
 .services { background: var(--surface); }
 .services-home { padding-bottom: 28px; }
-.services-home .section-intro h2 { font-size: clamp(1.15rem, 1.55vw, 1.4rem); line-height: 1.2; }
+.services-home .section-intro h2 { font-size: clamp(1.8rem, 3vw, 2.65rem); line-height: 1.12; }
 .services-home .services-home-tagline { display: block; margin-bottom: 7px; color: var(--ink); font: 800 clamp(1rem, 1.45vw, 1.2rem)/1.3 'Manrope', sans-serif; }
 .services-home .service-focus-grid { gap: 14px; }
 .services-home .service-focus-card { min-height: 124px; grid-template-columns: 40px minmax(0, 1fr); column-gap: 12px; padding: 15px; }
