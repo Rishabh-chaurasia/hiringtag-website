@@ -25,7 +25,7 @@ export function Contact() {
           company: data.get('company') || '',
           roleExperience: data.get('roleExperience') || '',
           email: data.get('email') || '',
-          phone: data.get('phone') || '',
+          //phone: data.get('phone') || '',
           audience: audience === 'employer' ? 'Employer' : 'Candidate',
           requirement: data.get('requirement') || '',
           message: data.get('message') || '',
@@ -43,7 +43,7 @@ export function Contact() {
 
   const details = [
     { icon: <Mail size={15} />, label: 'Email', value: siteData.company.email, href: `mailto:${siteData.company.email}` },
-    { icon: <Phone size={15} />, label: 'Phone', value: siteData.company.phone, href: `tel:${siteData.company.phone}` },
+ //   { icon: <Phone size={15} />, label: 'Phone', value: siteData.company.phone, href: `tel:${siteData.company.phone}` },
     { icon: <MapPin size={15} />, label: 'Office', value: siteData.company.address },
   ];
 
@@ -113,7 +113,7 @@ export function Contact() {
               </div>
               <div className="form-row">
                 <label>Email<input name="email" required type="email" placeholder="you@company.com" /></label>
-                <label>Phone<input name="phone" placeholder="+91 00000 00000" /></label>
+                {/* <label>Phone<input name="phone" placeholder="+91 00000 00000" /></label> */}
               </div>
 
               <label>I am:
