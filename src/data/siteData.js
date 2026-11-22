@@ -4,10 +4,10 @@ export const siteData = {
     legalName: 'Hiring Tag Pvt. Ltd.',
     tagline: 'Elevating Recruitment Excellence',
     email: 'hr@hiringtag.com',
-    phone: '+91-9560374796',
-    whatsapp: '919560374796',
+    // phone: '+91-9560374796',
+    // whatsapp: '919560374796',
     location: 'Gurugram, Haryana, India',
-    address: 'Unitech Arcadia, South City II, Sector 49, Gurugram, Haryana, India',
+    address: 'Gurugram, Haryana, India',
     linkedin: 'https://www.linkedin.com/company/hiring-tag-india/posts/?feedView=all',
   },
   nav: [
