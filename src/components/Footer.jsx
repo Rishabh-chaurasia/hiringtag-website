@@ -51,7 +51,7 @@ export function Footer({ onNavigate }) {
         </div>
         <div className="footer-col footer-connect">
           <h4>Contact Us</h4>
-          <a href={`tel:${siteData.company.phone}`}><Phone size={22} />{siteData.company.phone}</a>
+          {/* <a href={`tel:${siteData.company.phone}`}><Phone size={22} />{siteData.company.phone}</a> */}
           <a href={`mailto:${siteData.company.email}`}><Mail size={22} />{siteData.company.email}</a>
           <a href="https://www.hiringtag.com" target="_blank" rel="noreferrer"><Globe2 size={22} />www.hiringtag.com</a>
           <span className="footer-address"><MapPin size={22} />{siteData.company.address}</span>
